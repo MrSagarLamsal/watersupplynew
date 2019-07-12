@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.watersupply_kathmandu.API.UserApi;
-import com.example.watersupply_kathmandu.Models.RegisterModel;
+import com.example.watersupply_kathmandu.Models.UserModel;
 import com.example.watersupply_kathmandu.URL.servercon;
 
 import retrofit2.Call;
@@ -34,18 +34,16 @@ public class user_registration extends AppCompatActivity {
         password=findViewById(R.id.registration_Password);
 
 
-        register=findViewById(R.id.button_userRegister);
+        register=findViewById(R.id.button_registerfinal);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MyInstanceCreater();
-                RegisterModel registerModel=new RegisterModel(
+                UserModel registerModel=new UserModel(
                         name.getText().toString(),
                         username.getText().toString(),
                         email.getText().toString(),
                         password.getText().toString()
-
-
                 );
 
                 Call<Void> registerCall=userApi.registerUser(registerModel);
@@ -65,6 +63,7 @@ public class user_registration extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(user_registration.this, "Failed", Toast.LENGTH_SHORT).show();
 
                     }
                 });

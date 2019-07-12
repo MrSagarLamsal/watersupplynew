@@ -1,7 +1,6 @@
 package com.example.watersupply_kathmandu.API;
 
 import com.example.watersupply_kathmandu.Models.LoginResponse;
-import com.example.watersupply_kathmandu.Models.RegisterModel;
 import com.example.watersupply_kathmandu.Models.UserModel;
 
 import retrofit2.Call;
@@ -13,8 +12,8 @@ public interface UserApi {
     @POST("/login")
     Call<LoginResponse> loginUser(@Body UserModel loginModel);
 
-    @POST("register")
-    Call<Void> registerUser(@Body RegisterModel registerModel);
+    @POST("/register")
+    Call<Void> registerUser(@Body UserModel registerModel);
 
 
 }

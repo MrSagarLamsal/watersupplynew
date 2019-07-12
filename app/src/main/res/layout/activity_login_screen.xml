@@ -89,16 +89,17 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button_gotoRegister"
+            android:id="@+id/button_register"
             android:layout_width="360dp"
             android:layout_height="64dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/button_design2"
-            android:text="Register new user"
+            android:background="@drawable/button_design"
+            android:text="Register New User"
             android:layout_gravity="center"
             android:textColor="#fff"
             android:textSize="26dp"
             android:textStyle="bold" />
+
 
 
     </LinearLayout>

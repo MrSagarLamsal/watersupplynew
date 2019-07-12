@@ -28,7 +28,7 @@ public class login_screen extends AppCompatActivity{
     EditText Login_userEmail;
     EditText Login_userPassword;
     Button button_login;
-    Button button_userRegister;
+    Button button_Register;
     UserApi userApi;
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -41,11 +41,12 @@ public class login_screen extends AppCompatActivity{
         Login_userEmail=findViewById(R.id.Login_userEmail);
         Login_userPassword=findViewById(R.id.Login_userPassword);
         button_login=findViewById(R.id.button_login);
-        button_userRegister=findViewById(R.id.button_gotoRegister);
-        button_userRegister.setOnClickListener(new View.OnClickListener() {
+        button_Register=findViewById(R.id.button_register);
+
+        button_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(login_screen.this, user_registration.class);
+                Intent intent = new Intent(login_screen.this,user_registration.class);
                 startActivity(intent);
             }
         });
@@ -53,7 +54,9 @@ public class login_screen extends AppCompatActivity{
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             Toast.makeText(login_screen.this, "patur", Toast.LENGTH_SHORT).show();
+             Toast.makeText(login_screen.this, "paturvs2", Toast.LENGTH_SHORT).show();
+//                                Intent intent= new Intent(login_screen.this, user_registration.class);
+//                startActivity(intent);
                 System.out.println("patur"+Login_userEmail.getText().toString());
 //                InstanceCreater();
 //                Call<LoginResponse> call=userApi.loginUser(new UserModel(""
@@ -84,12 +87,7 @@ public class login_screen extends AppCompatActivity{
 
             }
         });
-        button_userRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
 
 
