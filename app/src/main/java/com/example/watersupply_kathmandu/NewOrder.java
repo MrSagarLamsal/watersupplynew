@@ -26,24 +26,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewOrder extends AppCompatActivity {
 
 
-    EditText name,contactno;
+    EditText name, contactno;
     EditText deliverydate;
-    EditText  quantity;
-    EditText deliverylocation,otherdetails,user_email;
+    EditText quantity;
+    EditText deliverylocation, otherdetails, user_email;
     Button creatorder;
     DatePickerDialog picker;
     OrderApi orderAPi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_order);
-        name=findViewById(R.id.txt_OrderName);
-        contactno=findViewById(R.id.txt_OrderContactNo);
-        deliverydate=findViewById(R.id.txt_OrderDate);
-        deliverylocation=findViewById(R.id.txt_OrderLocation);
-        otherdetails=findViewById(R.id.txt_OrderDetails);
-        user_email=findViewById(R.id.txt_OrderEmail);
-        creatorder=findViewById(R.id.button_Orderit);
+        name = findViewById(R.id.txt_OrderName);
+        contactno = findViewById(R.id.txt_OrderContactNo);
+        deliverydate = findViewById(R.id.txt_OrderDate);
+        deliverylocation = findViewById(R.id.txt_OrderLocation);
+        otherdetails = findViewById(R.id.txt_OrderDetails);
+        user_email = findViewById(R.id.txt_OrderEmail);
+        creatorder = findViewById(R.id.button_Orderit);
 
         deliverydate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -69,19 +70,32 @@ public class NewOrder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyInstanceCreater();
-                OrderModel orderModel=new OrderModel(
-                        name.getText().toString(),contactno.getText().toString(),deliverydate.getText().toString(),
-                        Integer.parseInt(quantity.getText().toString()),deliverylocation.getText().toString(),otherdetails.getText().toString(),user_email.getText().toString());
+//                if (quantity.getText().toString()==null){
+//                    System.out.println("patur it is null");
+//                }else{
+//                    System.out.println("patur"+quantity.getText().toString());
+//
+//                }
 
-                Call<Void> registerCall= orderAPi.addorders(orderModel);
+                OrderModel orderModel = new OrderModel(
+                        name.getText().toString(),
+                        contactno.getText().toString(),
+                        deliverydate.getText().toString() ,
+                        quantity.getText().toString(),
+                        deliverylocation.getText().toString(),
+                        otherdetails.getText().toString(),
+                        user_email.getText().toString()
+                );
+
+                Call<Void> registerCall = orderAPi.addorders(orderModel);
                 registerCall.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        if(!response.isSuccessful()){
+                        if (!response.isSuccessful()) {
                             Toast.makeText(NewOrder.this, "unable to add", Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
                             Toast.makeText(NewOrder.this, "Requested for Order", Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(NewOrder.this,MyOrders.class);
+                            Intent intent = new Intent(NewOrder.this, MyOrders.class);
                             startActivity(intent);
                         }
                     }
@@ -94,18 +108,14 @@ public class NewOrder extends AppCompatActivity {
                 });
 
 
-
             }
         });
-
-
 
 
     }
 
 
-
-    private void MyInstanceCreater(){
+    private void MyInstanceCreater() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(servercon.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

@@ -3,11 +3,11 @@ package com.example.watersupply_kathmandu.Models;
 public class OrderModel {
     private String name, contactno;
     private String deliverydate;
-    private Number quantity;
+    private String quantity;
     private String deliverylocation, otherdetails, user_email;
 
 
-    public OrderModel(String name, String contactno, String deliverydate, Number quantity, String deliverylocation, String otherdetails, String user_email) {
+    public OrderModel(String name, String contactno, String deliverydate, String quantity, String deliverylocation, String otherdetails, String user_email) {
         this.name = name;
         this.contactno = contactno;
         this.deliverydate = deliverydate;
@@ -41,11 +41,11 @@ public class OrderModel {
         this.deliverydate = deliverydate;
     }
 
-    public Number getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Number quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
