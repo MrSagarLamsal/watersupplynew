@@ -26,7 +26,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderAdapter
     @Override
     public OrderAdapterHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-      View view-LayoutInflater.from(viewGroup.getContext()).inflate();
+      View view=LayoutInflater.from(viewGroup.getContext()).inflate();
       return new OrderAdapterHolder(view);
     }
 

@@ -18,7 +18,7 @@ public interface UserApi {
 
 
     @POST("/addorderinfo")
-    Call<Void> registerUser(@Body OrderModel orderModel);
+    Call<Void> addorders(@Body OrderModel orderModel);
 
 
 

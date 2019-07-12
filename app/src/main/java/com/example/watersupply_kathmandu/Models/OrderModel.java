@@ -1,15 +1,13 @@
 package com.example.watersupply_kathmandu.Models;
 
-import java.util.Date;
-
 public class OrderModel {
-    private String name,contactno;
-    private Date deliverydate;
+    private String name, contactno;
+    private String deliverydate;
     private Number quantity;
-    private  String deliverylocation,otherdetails,user_email;
+    private String deliverylocation, otherdetails, user_email;
 
 
-    public OrderModel(String name, String contactno, Date deliverydate, Number quantity, String deliverylocation, String otherdetails, String user_email) {
+    public OrderModel(String name, String contactno, String deliverydate, Number quantity, String deliverylocation, String otherdetails, String user_email) {
         this.name = name;
         this.contactno = contactno;
         this.deliverydate = deliverydate;
@@ -35,11 +33,11 @@ public class OrderModel {
         this.contactno = contactno;
     }
 
-    public Date getDeliverydate() {
+    public String getDeliverydate() {
         return deliverydate;
     }
 
-    public void setDeliverydate(Date deliverydate) {
+    public void setDeliverydate(String deliverydate) {
         this.deliverydate = deliverydate;
     }
 
@@ -74,5 +72,6 @@ public class OrderModel {
     public void setUser_email(String user_email) {
         this.user_email = user_email;
     }
+
 
 }
