@@ -18,7 +18,6 @@ public class MyOrders extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders);
-<<<<<<< HEAD
 
 
 
@@ -28,28 +27,5 @@ public class MyOrders extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-=======
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
->>>>>>> 080707fbed691555ce00353858bec3bad026256e
-    }
 
 }
