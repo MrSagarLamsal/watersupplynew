@@ -21,7 +21,7 @@ public class Dashboard extends AppCompatActivity {
         neworder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(Dashboard.this,Order.class);
+                Intent intent= new Intent(Dashboard.this, NewOrder.class);
                 startActivity(intent);
             }
         });

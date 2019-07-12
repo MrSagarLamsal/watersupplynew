@@ -27,7 +27,7 @@
             android:label="@string/title_activity_my_orders"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".UpdateOrder" />
-        <activity android:name=".Order" />
+        <activity android:name=".NewOrder" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Dashboard" />
         <activity android:name=".login_screen" />
