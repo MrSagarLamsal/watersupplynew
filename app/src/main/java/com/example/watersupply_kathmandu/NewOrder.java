@@ -1,13 +1,16 @@
 package com.example.watersupply_kathmandu;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.watersupply_kathmandu.API.OrderApi;
 import com.example.watersupply_kathmandu.API.UserApi;
 import com.example.watersupply_kathmandu.Models.OrderModel;
 import com.example.watersupply_kathmandu.URL.servercon;
@@ -15,6 +18,8 @@ import com.example.watersupply_kathmandu.URL.servercon;
 import java.util.Calendar;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -27,7 +32,7 @@ public class NewOrder extends AppCompatActivity {
     EditText deliverylocation,otherdetails,user_email;
     Button creatorder;
     DatePickerDialog picker;
-    UserApi userApi;
+    OrderApi orderAPi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +72,28 @@ public class NewOrder extends AppCompatActivity {
                 OrderModel orderModel=new OrderModel(
                         name.getText().toString(),contactno.getText().toString(),deliverydate.getText().toString(),
                         Integer.parseInt(quantity.getText().toString()),deliverylocation.getText().toString(),otherdetails.getText().toString(),user_email.getText().toString());
-                
+
+                Call<Void> registerCall= orderAPi.addorders(orderModel);
+                registerCall.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if(!response.isSuccessful()){
+                            Toast.makeText(NewOrder.this, "unable to add", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(NewOrder.this, "Requested for Order", Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(NewOrder.this,MyOrders.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(NewOrder.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
 
             }
         });
@@ -83,6 +109,6 @@ public class NewOrder extends AppCompatActivity {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(servercon.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        userApi = retrofit.create(UserApi.class);
+        orderAPi = retrofit.create(OrderApi.class);
     }
 }

@@ -12,4 +12,8 @@ import retrofit2.http.POST;
 public interface OrderApi {
     @GET("/showorderdetails")
     Call<List<OrderModel>> getOrderDetails();
+
+    @POST("/addorderinfo")
+    Call<Void> addorders(@Body OrderModel orderModel);
+
 }
