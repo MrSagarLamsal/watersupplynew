@@ -45,7 +45,7 @@ public class user_registration extends AppCompatActivity {
                         email.getText().toString(),
                         password.getText().toString()
                 );
-
+                Toast.makeText(user_registration.this, registerModel.toString() , Toast.LENGTH_SHORT).show();
                 Call<Void> registerCall=userApi.registerUser(registerModel);
                 registerCall.enqueue(new Callback<Void>() {
                     @Override
@@ -53,8 +53,6 @@ public class user_registration extends AppCompatActivity {
                         if(!response.isSuccessful()){
                             Toast.makeText(user_registration.this, "unable to register", Toast.LENGTH_SHORT).show();
                         }else{
-
-
                             Toast.makeText(user_registration.this, "Registered", Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(user_registration.this,login_screen.class);
                             startActivity(intent);
@@ -63,7 +61,7 @@ public class user_registration extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(user_registration.this, "Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(user_registration.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });

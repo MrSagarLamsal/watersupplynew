@@ -74,30 +74,8 @@
             android:textColor="#FFF"
             />
 
-        <Button
-            android:id="@+id/btnInquiry"
-            android:layout_width="360dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button_design"
-            android:textColor="#FFF"
-            android:layout_gravity="center"
-            android:text="Your Inquiry"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/btnEdit_inquiry"
-            android:layout_width="360dp"
-            android:layout_height="40dp"
-            android:background="@drawable/button_design"
-            android:layout_gravity="center"
-            android:text="Edit Inquiry"
-            android:textSize="20sp"
-            android:layout_marginTop="15dp"
-            android:textStyle="bold"
-            android:textColor="#FFF"
-            />
+
     </LinearLayout>
 
 </LinearLayout>

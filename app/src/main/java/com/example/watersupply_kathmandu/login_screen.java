@@ -54,36 +54,34 @@ public class login_screen extends AppCompatActivity{
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             Toast.makeText(login_screen.this, "paturvs2", Toast.LENGTH_SHORT).show();
-//                                Intent intent= new Intent(login_screen.this, user_registration.class);
-//                startActivity(intent);
-                System.out.println("patur"+Login_userEmail.getText().toString());
-//                InstanceCreater();
-//                Call<LoginResponse> call=userApi.loginUser(new UserModel(""
-//                        ,Login_userEmail.getText().toString()
-//                        ,Login_userPassword.getText().toString(),""));
 
-//                call.enqueue(new Callback<LoginResponse>() {
-//                    @Override
-//                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-//                        if (!response.isSuccessful()) {
-//                            Toast.makeText(login_screen.this, "Unable to login", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            editor.putString("token", response.body().getToken());
-//                            editor.putString("username", response.body().getUsername());
-//                            editor.putString("userId", response.body().getUsername());
-//                            editor.commit();
-//                            Toast.makeText(login_screen.this, "Logged In", Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(login_screen.this, Dashboard.class);
-//                            startActivity(intent);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<LoginResponse> call, Throwable t) {
-//
-//                    }
-//                });
+                System.out.println("patur"+Login_userEmail.getText().toString());
+                InstanceCreater();
+                Call<LoginResponse> call=userApi.loginUser(new UserModel(""
+                        ,Login_userEmail.getText().toString()
+                        ,Login_userPassword.getText().toString(),""));
+
+                call.enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Toast.makeText(login_screen.this, "Unable to login", Toast.LENGTH_SHORT).show();
+                        } else {
+                            editor.putString("token", response.body().getToken());
+                            editor.putString("username", response.body().getUsername());
+                            editor.putString("userId", response.body().getUsername());
+                            editor.commit();
+                            Toast.makeText(login_screen.this, "Logged In", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(login_screen.this, Dashboard.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                    }
+                });
 
             }
         });
