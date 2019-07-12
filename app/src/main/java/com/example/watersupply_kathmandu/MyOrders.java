@@ -36,8 +36,7 @@ public class MyOrders extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders);
-<<<<<<< HEAD
-=======
+
         MyInstanceCreater();
         recyclerView = findViewById(R.id.recycler_my_orders);
         recyclerView.setLayoutManager(new LinearLayoutManager(MyOrders.this));
@@ -60,7 +59,6 @@ public class MyOrders extends AppCompatActivity {
 
             }
         });
->>>>>>> 7dd763beca8ca5a67039299d93e33a4adfafc959
 
     }
 
