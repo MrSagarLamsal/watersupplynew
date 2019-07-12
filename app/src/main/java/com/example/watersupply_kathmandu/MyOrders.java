@@ -1,24 +1,16 @@
 package com.example.watersupply_kathmandu;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.watersupply_kathmandu.API.OrderApi;
-import com.example.watersupply_kathmandu.API.UserApi;
 import com.example.watersupply_kathmandu.AdapterPackage.OrderAdapter;
 import com.example.watersupply_kathmandu.Models.OrderModel;
 import com.example.watersupply_kathmandu.URL.servercon;
 
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,8 +28,7 @@ public class MyOrders extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders);
-<<<<<<< HEAD
-=======
+
         MyInstanceCreater();
         recyclerView = findViewById(R.id.recycler_my_orders);
         recyclerView.setLayoutManager(new LinearLayoutManager(MyOrders.this));
@@ -60,14 +51,13 @@ public class MyOrders extends AppCompatActivity {
 
             }
         });
->>>>>>> 7dd763beca8ca5a67039299d93e33a4adfafc959
 
     }
-
-    private void MyInstanceCreater() {
+    private void MyInstanceCreater(){
         Retrofit retrofit = new Retrofit.Builder().baseUrl(servercon.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         orderApi = retrofit.create(OrderApi.class);
     }
 }
+
