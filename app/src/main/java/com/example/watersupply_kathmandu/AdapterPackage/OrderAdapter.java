@@ -36,12 +36,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderAdapter
     @Override
     public void onBindViewHolder(@NonNull OrderAdapterHolder orderAdapterHolder, int i) {
         OrderModel orderModel = orderModels.get(i);
-        orderAdapterHolder.view_txtDeliveryLocation.setText(orderModel.get);
-        view_txtQty;
-        view_txtDeliveryDate;
-        view_txtEmail;
-        view_txtContact;
-        view_txtName;
+        orderAdapterHolder.view_txtDeliveryLocation.setText(orderModel.getDeliverylocation());
+        orderAdapterHolder.view_txtQty.setText(orderModel.getQuantity().toString());
+        orderAdapterHolder.view_txtDeliveryDate.setText(orderModel.getDeliverydate().toString());
+        orderAdapterHolder.view_txtEmail.setText(orderModel.getUser_email());
+        orderAdapterHolder.view_txtContact.setText(orderModel.getContactno());
+        orderAdapterHolder.view_txtName.setText(orderModel.getName());
     }
 
     @Override
@@ -55,14 +55,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderAdapter
 
         public OrderAdapterHolder(@NonNull View itemView) {
             super(itemView);
-            view_txtDeliveryLocation=itemView.findViewById(R.id.view_txtDeliveryLocation);
-            view_txtQty=itemView.findViewById(R.id.view_txtQty);
-            view_txtDeliveryDate=itemView.findViewById(R.id.view_txtDeliveryDate);
-            view_txtEmail=itemView.findViewById(R.id.view_txtEmail);
-            view_txtContact=itemView.findViewById(R.id.view_txtContact);
-            view_txtName=itemView.findViewById(R.id.view_txtName);
-            btn_UpdateOrder=itemView.findViewById(R.id.btn_UpdateOrder);
-            btn_CancelOrder=itemView.findViewById(R.id.btn_CancelOrder);
+            view_txtDeliveryLocation = itemView.findViewById(R.id.view_txtDeliveryLocation);
+            view_txtQty = itemView.findViewById(R.id.view_txtQty);
+            view_txtDeliveryDate = itemView.findViewById(R.id.view_txtDeliveryDate);
+            view_txtEmail = itemView.findViewById(R.id.view_txtEmail);
+            view_txtContact = itemView.findViewById(R.id.view_txtContact);
+            view_txtName = itemView.findViewById(R.id.view_txtName);
+            btn_UpdateOrder = itemView.findViewById(R.id.btn_UpdateOrder);
+            btn_CancelOrder = itemView.findViewById(R.id.btn_CancelOrder);
         }
     }
 }
