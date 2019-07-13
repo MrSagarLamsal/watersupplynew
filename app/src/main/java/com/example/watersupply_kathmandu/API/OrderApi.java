@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 
 public interface OrderApi {
     @GET("/showorderdetails")
-    Call<List<OrderModel>> getOrderDetails();
+    Call<List<OrderModel>> getOrderDetails(@Header("Authorization") String auth);
 
     @POST("addorderinfo")
     Call<Void> addorders(@Header("Authorization") String auth, @Body OrderModel orderModel);

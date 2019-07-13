@@ -1,5 +1,7 @@
 package com.example.watersupply_kathmandu;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +25,7 @@ public class MyOrders extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     OrderApi orderApi;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +35,22 @@ public class MyOrders extends AppCompatActivity {
         MyInstanceCreater();
         recyclerView = findViewById(R.id.recycler_my_orders);
         recyclerView.setLayoutManager(new LinearLayoutManager(MyOrders.this));
-
-        Call<List<OrderModel>> listCall = orderApi.getOrderDetails();
+        SharedPreferences sharedPreferences = this.getSharedPreferences("Authentication", Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "");
+        Call<List<OrderModel>> listCall = orderApi.getOrderDetails("Bearer " + token);
         listCall.enqueue(new Callback<List<OrderModel>>() {
             @Override
             public void onResponse(Call<List<OrderModel>> call, Response<List<OrderModel>> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(MyOrders.this, "Code: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyOrders.this, "Code: " + response.message(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                List<OrderModel> orderModels = response.body();
-                recyclerView.setAdapter(new OrderAdapter(MyOrders.this, orderModels));
+                else {
+
+                    List<OrderModel> orderModels = response.body();
+                    recyclerView.setAdapter(new OrderAdapter(MyOrders.this, orderModels));
+                }
+
             }
 
             @Override
