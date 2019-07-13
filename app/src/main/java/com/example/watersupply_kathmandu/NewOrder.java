@@ -1,7 +1,9 @@
 package com.example.watersupply_kathmandu;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,18 +35,21 @@ public class NewOrder extends AppCompatActivity {
     Button creatorder;
     DatePickerDialog picker;
     OrderApi orderAPi;
+    String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_order);
         name=findViewById(R.id.txt_OrderName);
         contactno=findViewById(R.id.txt_OrderContactNo);
+        quantity=findViewById(R.id.txt_OrderQuantity);
         deliverydate=findViewById(R.id.txt_OrderDate);
         deliverylocation=findViewById(R.id.txt_OrderLocation);
         otherdetails=findViewById(R.id.txt_OrderDetails);
         user_email=findViewById(R.id.txt_OrderEmail);
         creatorder=findViewById(R.id.button_Orderit);
-
+        SharedPreferences sharedPreferences = this.getSharedPreferences("Authentication", Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "");
         deliverydate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -69,16 +74,22 @@ public class NewOrder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyInstanceCreater();
-                OrderModel orderModel=new OrderModel(
-                        name.getText().toString(),contactno.getText().toString(),deliverydate.getText().toString(),
-                        Integer.parseInt(quantity.getText().toString()),deliverylocation.getText().toString(),otherdetails.getText().toString(),user_email.getText().toString());
+//                OrderModel orderModel=new OrderModel(
+//                        name.getText().toString(),contactno.getText().toString(),deliverydate.getText().toString(),
+//                        quantity.getText().toString(),deliverylocation.getText().toString(),otherdetails.getText().toString(),user_email.getText().toString());
 
-                Call<Void> registerCall= orderAPi.addorders(orderModel);
+                OrderModel  orderModel=new OrderModel(name.getText().toString(),contactno.getText().toString(),
+                        deliverydate.getText().toString(),
+                        quantity.getText().toString(),
+                        deliverylocation.getText().toString(),
+                        otherdetails.getText().toString(),
+                        user_email.getText().toString());
+                Call<Void> registerCall= orderAPi.addorders("Bearer " + token, orderModel);
                 registerCall.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if(!response.isSuccessful()){
-                            Toast.makeText(NewOrder.this, "unable to add", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NewOrder.this, response.message(), Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(NewOrder.this, "Requested for Order", Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(NewOrder.this,MyOrders.class);
