@@ -92,7 +92,7 @@ public class NewOrder extends AppCompatActivity {
                             Toast.makeText(NewOrder.this, response.message(), Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(NewOrder.this, "Requested for Order", Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(NewOrder.this,MyOrders.class);
+                            Intent intent=new Intent(NewOrder.this,Dashboard.class);
                             startActivity(intent);
                         }
                     }
