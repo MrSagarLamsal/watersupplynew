@@ -6,6 +6,7 @@ public class OrderModel {
     private String quantity;
     private String deliverylocation, otherdetails, user_email;
 
+
     public OrderModel(String name, String contactno, String deliverydate, String quantity, String deliverylocation, String otherdetails, String user_email) {
         this.name = name;
         this.contactno = contactno;
